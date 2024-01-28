@@ -1,13 +1,20 @@
 import React from 'react';
-import './BoardSide.css'; // Assurez-vous de créer ce fichier CSS
+import './BoardSide.css';
 
 function BoardSide(props) {
-    // Logique du composant
+    // Exemple : Vous pouvez passer des cartes ou d'autres éléments en props
+    const { cards } = props;
+
     return (
         <div className="board-side">
-            {/* Contenu du composant */}
+            {cards.map((card, index) => (
+                <div key={index} className="card-slot">
+                    {/* Ici, vous pouvez utiliser le composant Card ou un autre composant pour afficher les cartes */}
+                </div>
+            ))}
         </div>
     );
 }
 
 export default BoardSide;
+

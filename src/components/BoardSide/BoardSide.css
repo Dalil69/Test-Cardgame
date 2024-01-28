@@ -1,0 +1,16 @@
+.board-side {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+}
+
+.card-slot {
+    width: 100px;
+    height: 140px;
+    border: 1px dashed #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
