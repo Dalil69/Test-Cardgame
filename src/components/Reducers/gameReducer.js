@@ -1,11 +1,17 @@
-import { createStore, combineReducers } from 'redux';
 import gameReducer from './reducers/gameReducer';
 
-const rootReducer = combineReducers({
-  game: gameReducer,
-  // Ajoutez d'autres reducers ici
-});
 
-const store = createStore(rootReducer);
-
-export default store;
+const initialState = {
+    // Définissez l'état initial de votre jeu
+  };
+  
+  const gameReducer = (state = initialState, action) => {
+    switch (action.type) {
+      // Gérez différentes actions ici
+      default:
+        return state;
+    }
+  };
+  
+  export default gameReducer;
+  
