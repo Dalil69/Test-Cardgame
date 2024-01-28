@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gameReducer from './reducers/gameReducer'; // Assurez-vous d'avoir un reducer
+import gameReducer from './reducers/gameReducer';
 
 const store = configureStore({
   reducer: {
     game: gameReducer,
-    // Ajoutez d'autres reducers ici
+    // autres reducers ici
   },
 });
 
 export default store;
+
