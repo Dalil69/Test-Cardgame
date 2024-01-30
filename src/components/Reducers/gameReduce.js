@@ -1,5 +1,3 @@
-import gameReducer from './Reducers/gameReduce';
-
 const initialState = {
     // Définissez l'état initial de votre jeu
   };
