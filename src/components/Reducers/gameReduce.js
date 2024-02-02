@@ -1,10 +1,15 @@
 const initialState = {
-    // Définissez l'état initial de votre jeu
+  selectedCard: null,
   };
   
   const localGameReducer = (state = initialState, action) => {
     switch (action.type) {
-      // Gérez différentes actions ici
+      case 'PLAY_CARD':
+        // Logique pour jouer une carte
+        return { ...state, /* mise à jour de l'état */ };
+      case 'SELECT_CARD':
+        // Logique pour sélectionner une carte
+        return { ...state, selectedCard: action.payload };
       default:
         return state;
     }
