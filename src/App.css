@@ -1,0 +1,20 @@
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh; /* Utilisez toute la hauteur de l'écran */
+  }
+  
+  .hand-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .board-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center; /* Centre les éléments verticalement */
+  }
+  

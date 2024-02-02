@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { startGame } from './redux/actions/gameActions';
 import Hand from './components/Hand/Hand';
 import Board from './components/Board/Board';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,13 +24,19 @@ function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
+      <div className="game-container"> {/* Utilisez game-container pour structurer votre jeu */}
         {isGameStarted ? (
-          <div>
-            <div>Jeu en cours...</div>
-            <Hand cards={playerHand} onCardPlay={(card) => console.log(card)} />
-            <Board slots={slotsData} /> {/* Utilisez ici les données des slots */}
-          </div>
+          <>
+            {/* Zone du plateau de jeu au centre */}
+            <div className="board-container">
+              <Board slots={slotsData} /> {/* Assurez-vous que Board gère correctement les slots */}
+            </div>
+
+            {/* Zone de la main du joueur en bas */}
+            <div className="hand-container">
+              <Hand cards={playerHand} onCardPlay={(card) => console.log(card)} />
+            </div>
+          </>
         ) : (
           <div>Démarrage du jeu...</div>
         )}
