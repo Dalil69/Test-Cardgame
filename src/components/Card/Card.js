@@ -2,19 +2,22 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import './Card.css';
 import { playCard } from '../../redux/actions/gameActions';
+import { useDrag } from 'react-dnd';
 
-function Card({ id, name, cost, strength, health, onDragStart }) {
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    dispatch(playCard(id)); 
-  };
+function Card({ id, name, cost, strength, health }) {
+  const [{ isDragging }, dragRef] = useDrag(() => ({
+    type: "card",
+    item: { id },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
 
   return (
     <div
+      ref={dragRef}
       className="card"
-      draggable
-      onDragStart={() => onDragStart(id)}
+      style={{ opacity: isDragging ? 0.5 : 1 }}
     >
       <div>Nom: {name}</div>
       <div>Coût: {cost}</div>
