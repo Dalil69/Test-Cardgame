@@ -1,4 +1,4 @@
-import { actionTypes } from '../../redux/actions/gameActions';
+import { actionTypes } from '../actions/gameActions';
 
 const initialState = {
   isGameStarted: false,
