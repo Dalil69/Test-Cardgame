@@ -1,5 +1,6 @@
 import React from 'react';
-import Card from './Card/Card'; // Assurez-vous que le chemin d'accès est correct
+import Card from '../Card/Card';
+
 
 function Hand({ cards, onCardPlay }) {
     return (

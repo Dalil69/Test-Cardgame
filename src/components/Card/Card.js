@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { selectCard } from '../../redux/actions/gameActions';
 import './Card.css';
+import { playCard } from '../../redux/actions/gameActions';
 
-function Card({ name, cost, strength, health }) {
+function Card({ id, name, cost, strength, health }) {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(selectCard(name));
+    dispatch(playCard(id)); // Assurez-vous de passer l'ID correctement
   };
 
   return (
