@@ -1,5 +1,7 @@
 import React from 'react';
 import './BoardSide.css';
+import Card from '../Card/Card';
+
 
 function BoardSide({ cards, onCardClick }) {
     return (
