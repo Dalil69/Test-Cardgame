@@ -4,7 +4,6 @@ import gameReducer from './Reducers/gameReduce';
 const store = configureStore({
   reducer: {
     game: gameReducer,
-    // autres reducers ici
   },
 });
 
