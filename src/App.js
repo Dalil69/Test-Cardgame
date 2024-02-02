@@ -1,20 +1,24 @@
-import React from 'react';
-import Card from './components/Card/Card';
-import BoardSide from './components/BoardSide/BoardSide';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { startGame } from './redux/actions/gameActions';
+
 function App() {
-  const boardSideData = [
-    { /* données de la carte 1 */ },
-    { /* données de la carte 2 */ },
-    // Ajoutez autant de cartes que vous le souhaitez
-  ];
+  const dispatch = useDispatch();
+  const isGameStarted = useSelector((state) => state.game.isGameStarted);
+
+  useEffect(() => {
+    dispatch(startGame());
+  }, [dispatch]);
+
   return (
     <div>
-      <h1>Bienvenue sur mon site React!</h1>
-      <Card /> {/* Utilisation du composant Card */}
-      <BoardSide cards={boardSideData} /> {/* Utilisation du composant BoardSide avec des données */}
+      {isGameStarted ? (
+        <div>Jeu en cours...</div>
+      ) : (
+        <div>Démarrage du jeu...</div>
+      )}
     </div>
   );
 }
 
 export default App;
-
