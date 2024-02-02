@@ -1,23 +1,24 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import './Card.css';
-import { playCard } from '../../redux/actions/gameActions';
 import { useDrag } from 'react-dnd';
+import './Card.css';
 
-function Card({ id, name, cost, strength, health }) {
+function Card({ id, name, cost, strength, health, location }) {
   const [{ isDragging }, dragRef] = useDrag(() => ({
     type: "card",
     item: { id },
-    collect: (monitor) => ({
+    collect: monitor => ({
       isDragging: !!monitor.isDragging(),
     }),
   }));
+
+  // Style conditionnel en fonction de l'emplacement de la carte
+  const cardStyle = location === 'inGame' ? { border: '2px solid gold' } : {};
 
   return (
     <div
       ref={dragRef}
       className="card"
-      style={{ opacity: isDragging ? 0.5 : 1 }}
+      style={{ ...cardStyle, opacity: isDragging ? 0.5 : 1 }}
     >
       <div>Nom: {name}</div>
       <div>Coût: {cost}</div>

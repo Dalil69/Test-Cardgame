@@ -5,22 +5,26 @@ import './BoardSlot.css';
 function BoardSlot() {
   const [{ canDrop, isOver }, dropRef] = useDrop(() => ({
     accept: "card",
-    drop: (item, monitor) => {
-      // Logique pour gérer une carte déposée
-      console.log("Card dropped", item);
-    },
-    collect: (monitor) => ({
+    drop: () => console.log("Card dropped"),
+    collect: monitor => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop(),
     }),
   }));
 
+  // Style conditionnel pour le surlignement
+  const getSlotStyle = () => {
+    if (isOver && canDrop) {
+      return { backgroundColor: 'lightgreen' };
+    } else if (!isOver && canDrop) {
+      return { backgroundColor: 'lightyellow' };
+    } else {
+      return {};
+    }
+  };
+
   return (
-    <div
-      ref={dropRef}
-      className="board-slot"
-      style={{ backgroundColor: isOver ? 'darkgreen' : 'green' }}
-    >
+    <div ref={dropRef} className="board-slot" style={getSlotStyle()}>
       {/* Emplacement pour une carte */}
     </div>
   );
