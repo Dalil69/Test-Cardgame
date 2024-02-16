@@ -1,26 +1,20 @@
 import React from 'react';
 import './Board.css';
 import BoardSlot from '../BoardSlot/BoardSlot';
-import { useDrop } from 'react-dnd';
+import { useDispatch } from 'react-redux';
+import { cardDropped } from '../../redux/actions'; // Assurez-vous que cette action existe
 
-function Board({ slots, onCardDrop }) {
-  const [{ canDrop, isOver }, dropRef] = useDrop(() => ({
-    accept: 'card',
-    drop: (item, monitor) => {
-      // Logique pour gérer une carte déposée
-      console.log("Card dropped", item);
-      if (onCardDrop) onCardDrop(item);
-    },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-      canDrop: !!monitor.canDrop(),
-    }),
-  }));
+function Board({ slots }) {
+  const dispatch = useDispatch();
+
+  const handleCardDrop = (cardId) => {
+    dispatch(cardDropped(cardId));
+  };
 
   return (
-    <div ref={dropRef} className="board">
+    <div className="board">
       {slots.map((slot, index) => (
-        <BoardSlot key={index} onDrop={onCardDrop} />
+        <BoardSlot key={index} onDrop={handleCardDrop} />
       ))}
     </div>
   );

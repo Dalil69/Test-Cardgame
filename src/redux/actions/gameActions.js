@@ -9,7 +9,12 @@ export const actionTypes = {
   export const startGame = () => ({
     type: actionTypes.START_GAME,
   });
-  
+
+export const cardDropped = (cardId) => ({
+  type: 'CARD_DROPPED',
+  payload: cardId,
+});
+
   export const moveCardToBoard = (cardId, position) => ({
     type: actionTypes.MOVE_CARD_TO_BOARD,
     payload: { cardId, position },
