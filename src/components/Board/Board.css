@@ -5,6 +5,13 @@
     border: 1px solid #ccc;
     background-color: #f0f0f0;
 }
+.board {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    flex-wrap: wrap;
+  }
+  
 
 .card-slot {
     width: 100px;
