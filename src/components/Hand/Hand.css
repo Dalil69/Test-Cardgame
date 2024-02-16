@@ -1,6 +1,7 @@
 .hand {
     display: flex;
-    justify-content: center;
-    gap: 10px; 
+    justify-content: center; /* Centre les cartes horizontalement */
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si l'espace horizontal est insuffisant */
+    gap: 10px; /* Espacement entre les cartes */
   }
   
