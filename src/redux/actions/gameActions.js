@@ -10,9 +10,9 @@ export const actionTypes = {
     type: actionTypes.START_GAME,
   });
 
-export const cardDropped = (cardId) => ({
+export const cardDropped = (cardId, slotId) => ({
   type: 'CARD_DROPPED',
-  payload: cardId,
+  payload: { cardId, slotId },
 });
 
   export const moveCardToBoard = (cardId, position) => ({

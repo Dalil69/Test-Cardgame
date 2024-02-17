@@ -2,7 +2,7 @@ import React from 'react';
 import './Board.css';
 import BoardSlot from '../BoardSlot/BoardSlot';
 import { useDispatch } from 'react-redux';
-import { cardDropped } from '../../redux/actions'; // Assurez-vous que cette action existe
+import { cardDropped } from '../../redux/actions/gameActions'; // Assurez-vous que cette action existe
 
 function Board({ slots }) {
   const dispatch = useDispatch();
