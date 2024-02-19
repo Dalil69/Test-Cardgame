@@ -14,38 +14,45 @@ const initialState = {
 const gameReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.START_GAME:
-      // Logique pour démarrer le jeu
       return {
         ...state,
         isGameStarted: true,
       };
     case actionTypes.PLAY_CARD:
-      // Logique pour jouer une carte de la main du joueur
-      const updatedPlayerHand = state.playerHand.filter(card => card.id !== action.payload.cardId);
+      const updatedPlayerHandForPlay = state.playerHand.filter(card => card.id !== action.payload.cardId);
       return {
         ...state,
-        playerHand: updatedPlayerHand,
+        playerHand: updatedPlayerHandForPlay,
       };
     case actionTypes.MOVE_CARD_TO_BOARD:
-      // Logique pour déplacer une carte vers le plateau de jeu
       const cardToMove = state.playerHand.find(card => card.id === action.payload.cardId);
-      if (!cardToMove) return state; // Si la carte n'est pas trouvée, ne faites rien
+      if (!cardToMove) return state;
 
-      // Supposons que 'position' est un objet avec { x, y } pour simplifier
-      // Cette partie peut être ajustée selon votre logique de positionnement sur le plateau
-      const newBattlefield = [...state.battlefield, { ...cardToMove, position: action.payload.position }];
+      const newBattlefieldForMove = [...state.battlefield, cardToMove];
+      const updatedPlayerHandForMove = state.playerHand.filter(card => card.id !== action.payload.cardId);
 
       return {
         ...state,
-        playerHand: state.playerHand.filter(card => card.id !== action.payload.cardId), // Retirez la carte de la main
-        battlefield: newBattlefield, // Ajoutez la carte au champ de bataille avec sa position
+        playerHand: updatedPlayerHandForMove,
+        battlefield: newBattlefieldForMove,
+      };
+    case actionTypes.CARD_DROPPED:
+      const { cardId, slotId } = action.payload;
+      const cardToDrop = state.playerHand.find(card => card.id === cardId);
+      if (!cardToDrop) return state;
+
+      const updatedBattlefieldForDrop = state.battlefield.map((slot, index) => index === slotId ? cardToDrop : slot);
+      const updatedPlayerHandForDrop = state.playerHand.filter(card => card.id !== cardId);
+
+      return {
+        ...state,
+        playerHand: updatedPlayerHandForDrop,
+        battlefield: updatedBattlefieldForDrop,
       };
     case actionTypes.SET_CARD_POSITION:
       // Logique optionnelle pour ajuster la position d'une carte sur le champ de bataille
-      // Cette partie dépend de la structure exacte de votre état 'battlefield' et des besoins spécifiques de votre jeu
       return state;
     case actionTypes.END_TURN:
-      // Logique pour finir le tour et passer au joueur suivant
       return {
         ...state,
         currentPlayerTurn: state.currentPlayerTurn === 1 ? 2 : 1,
